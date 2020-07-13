@@ -74,7 +74,7 @@ class CLI
         member_gyms["return"] = "No. Please go back to menu"
         selection = @@prompt.select("Here are your membership(s). Which membership would you like to cancel?", member_gyms)
         current_ms = Membership.find_by(user_id: @@current_user, gym_id: selection)
-        if current_ms.status == "Active" || "Suspended"
+        if current_ms.status == "Active" || current_ms.status == "Suspended"
             current_ms.destroy
         system "clear"
         puts "You have ended your membership."
@@ -88,18 +88,6 @@ class CLI
 
         end
     end
-
-    # def active_memberships #goes into current_membership
-    #     @@current_user.memberships.select do |membership|
-    #         membership.status == "Active"
-    #     end
-    # end
-
-    # def suspend_memberships #goes into current_membership
-    #     @@current_user.memberships.select do |membership|
-    #         membership.status == "Suspended"
-    #     end
-    # end
 
     def self.location
         system "clear"
